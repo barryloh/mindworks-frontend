@@ -1,0 +1,54 @@
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react/prop-types": 0,
+    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "no-underscore-dangle": 0,
+    "import/imports-first": ["error", "absolute-first"],
+    "import/newline-after-import": "error",
+    "import/no-extraneous-dependencies": [
+      0,
+      {
+        "optionalDependencies": true
+      }
+    ],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "no-param-reassign": 0,
+    "react/no-did-update-set-state": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "import/prefer-default-export": 0,
+    "react/react-in-jsx-scope": 0
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "sessionStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true,
+    "fetch": false
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"],
+        "paths": ["src"]
+      }
+    },
+    "import/ignore": [".svg$"]
+  },
+  "env": {
+    "jest": true
+  }
+}
