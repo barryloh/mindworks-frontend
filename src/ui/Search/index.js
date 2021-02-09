@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import Querystring from 'querystring';
 import { Box, Button, Typography } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import searchComments from './api';
 import Post from '../Posts/Post';
@@ -36,7 +37,6 @@ const Search = () => {
         }
       });
 
-      console.log('##searchedPosts', searchedPosts);
       setPosts(searchedPosts);
       return;
     }
@@ -46,25 +46,37 @@ const Search = () => {
 
   return (
     <Box>
-      <Typography
-        style={{ fontWeight: 600 }}
-        variant="h4"
-        component="h1"
-        align="left">
-        Search
-      </Typography>
       <Button
         variant="text"
         size="small"
         onClick={() => {
           history.goBack();
         }}>
-        Go Back
+        <ArrowBackIcon style={{ marginRight: 8 }} /> Go Back
       </Button>
-      {posts.map((post) => {
-        const { id } = post;
-        return <Post key={id} post={post} />;
-      })}
+      <Typography
+        style={{ marginTop: 8, fontWeight: 600 }}
+        variant="h4"
+        component="h1"
+        align="left">
+        Search
+      </Typography>
+      <Box style={{ marginTop: 16 }}>
+        {loading && (
+          <Typography color="textSecondary" component="p">
+            Loading...
+          </Typography>
+        )}
+        {!loading && posts.length === 0 && (
+          <Typography variant="h5" component="p">
+            No results found
+          </Typography>
+        )}
+        {posts.map((post) => {
+          const { id } = post;
+          return <Post key={id} post={post} />;
+        })}
+      </Box>
     </Box>
   );
 };

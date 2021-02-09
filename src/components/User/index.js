@@ -1,49 +1,30 @@
 import { Box, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-const User = ({ name, username }) => (
-  // const [name, setName] = useState(null);
-
-  // useEffect(() => {
-  //   if (id) {
-  //     const data = client.readFragment({
-  //       id: `User:${id}`,
-  //       fragment: GET_USER_BY_ID,
-  //     });
-  //     setName(data ? data.name : null);
-  //   }
-  //
-  //   if (email) {
-  //     const data = client.readQuery({
-  //       query: aa,
-  //       variables: {
-  //         id,
-  //       },
-  //     });
-  //
-  //     const user = data.users.find((el) => el.email === email);
-  //     console.log('data', email, data, user);
-  //
-  //     if (user) {
-  //       setName(user.name);
-  //     } else {
-  //       setName(email);
-  //     }
-  //   }
-  // }, []);
-
-  <Box mb={4}>
-    <Typography align="left" component="p">
-      {name} @{username}
+const User = ({ email, name, username }) => (
+  <Box mb={2}>
+    <Typography style={{ fontWeight: 500 }} align="left" component="p">
+      {email === undefined || email === null ? (
+        <>
+          <span>{name}</span>{' '}
+          <Typography
+            color="textSecondary"
+            component="span">{`@${username}`}</Typography>
+        </>
+      ) : (
+        email
+      )}
     </Typography>
   </Box>
 );
 User.defaultProps = {
+  email: null,
   name: null,
   username: null,
 };
 
 User.propTypes = {
+  email: PropTypes.string,
   name: PropTypes.string,
   username: PropTypes.string,
 };

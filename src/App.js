@@ -7,7 +7,6 @@ import Appbar from './components/Appbar';
 import AppRouter from './utils/AppRouter';
 
 import CustomMUITheme from './styles/theme';
-import './App.css';
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API_GRAPH_QL,
@@ -32,7 +31,12 @@ function App() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={CustomMUITheme}>
         <div
-          style={{ width: '100%', height: '100%', backgroundColor: '#fafafa' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            minHeight: '100vh',
+            backgroundColor: '#f2f2f2',
+          }}
           className="App">
           <BrowserRouter>
             <Appbar />

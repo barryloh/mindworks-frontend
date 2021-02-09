@@ -1,4 +1,5 @@
 import { Box, Button } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useParams, useHistory } from 'react-router-dom';
 
 import Post from '../../components/PostWithComments';
@@ -9,7 +10,6 @@ const PostItem = () => {
   const { postId } = useParams();
 
   const { loading, data } = getPostAndComments(postId);
-  console.log('##data', data);
 
   return (
     <Box>
@@ -20,7 +20,7 @@ const PostItem = () => {
           onClick={() => {
             history.goBack();
           }}>
-          Go Back
+          <ArrowBackIcon style={{ marginRight: 8 }} /> Go Back
         </Button>
       </Box>
       {loading || !data ? <p>Loading...</p> : <Post post={data} />}
