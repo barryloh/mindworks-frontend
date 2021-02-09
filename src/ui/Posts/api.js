@@ -1,22 +1,20 @@
 import { useQuery, gql } from '@apollo/client';
 
-const GET_ALL_POSTS_AND_USERS = gql`
+const GET_ALL_POSTS = gql`
   query GetAllPosts {
     posts {
-      userId
       id
       title
       body
-    }
-    users {
-      id
-      name
-      username
-      email
+      user {
+        id
+        name
+        username
+      }
     }
   }
 `;
 
-const getPostsAndUsers = () => useQuery(GET_ALL_POSTS_AND_USERS);
+const getAllPosts = () => useQuery(GET_ALL_POSTS);
 
-export default getPostsAndUsers;
+export default getAllPosts;

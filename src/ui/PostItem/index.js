@@ -8,7 +8,7 @@ const PostItem = () => {
   const history = useHistory();
   const { postId } = useParams();
 
-  const { data } = getPostAndComments(postId);
+  const { loading, data } = getPostAndComments(postId);
   console.log('##data', data);
 
   return (
@@ -23,7 +23,7 @@ const PostItem = () => {
           Go Back
         </Button>
       </Box>
-      <Post post={data} />
+      {loading || !data ? <p>Loading...</p> : <Post post={data} />}
     </Box>
   );
 };

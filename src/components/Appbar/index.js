@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   AppBar,
   Container,
@@ -8,7 +9,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { Search as SearchIcon } from '@material-ui/icons';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import Querystring from 'querystring';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -71,6 +73,16 @@ const useStyles = makeStyles((theme) => ({
 const Appbar = () => {
   const classes = useStyles();
   const history = useHistory();
+  const location = useLocation();
+  const queryParams = Querystring.parse(location.search.replace('?', ''));
+
+  const { query: queryParamFromURL } = queryParams;
+
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    setQuery(queryParamFromURL);
+  }, [queryParamFromURL]);
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
@@ -89,6 +101,10 @@ const Appbar = () => {
 
       history.push(path);
     }
+  };
+
+  const onChange = (e) => {
+    setQuery(e.target.value);
   };
 
   return (
@@ -113,6 +129,8 @@ const Appbar = () => {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
                 onKeyDown={onKeyDown}
+                onChange={onChange}
+                value={query}
               />
             </div>
           </Container>

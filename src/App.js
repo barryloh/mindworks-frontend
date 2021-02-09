@@ -37,7 +37,7 @@ function App() {
           <BrowserRouter>
             <Appbar />
             <Container maxWidth="sm">
-              <Box my={6}>
+              <Box py={6}>
                 <AppRouter />
               </Box>
             </Container>

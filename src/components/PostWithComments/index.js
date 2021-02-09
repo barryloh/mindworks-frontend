@@ -1,4 +1,10 @@
-import { Box, Card, CardContent, Typography } from '@material-ui/core';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardActionArea,
+  Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
@@ -16,33 +22,42 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Post = ({ post }) => {
+const Post = ({ post, isViewOnly }) => {
   const classes = useStyles();
-  const { userId, title, body, comments } = post;
+  const { title, body, user, comments } = post;
+
+  const CardContentComponent = isViewOnly ? Box : CardActionArea;
+
   return (
     <Box my={6}>
       <Card>
         <CardContent>
-          <User id={userId} />
-          <Box position="relative" my={6}>
-            <Typography variant="h4" align="left" gutterBottom>
-              {title}
+          <CardContentComponent>
+            <User name={user.name} username={user.username} />
+            <Box position="relative" my={6}>
+              <Typography variant="h4" align="left" gutterBottom>
+                {title}
+              </Typography>
+            </Box>
+            <Typography component="p" align="left">
+              {body}
             </Typography>
-          </Box>
-          <Typography component="p" align="left">
-            {body}
-          </Typography>
-          <hr className={classes.separator} />
-          <Box>
-            {comments.map((comment) => {
-              const { id } = comment;
-              return <Comment key={id} comment={comment} />;
-            })}
-          </Box>
+            <hr className={classes.separator} />
+            <Box>
+              {comments.map((comment) => {
+                const { id } = comment;
+                return <Comment key={id} comment={comment} />;
+              })}
+            </Box>
+          </CardContentComponent>
         </CardContent>
       </Card>
     </Box>
   );
+};
+
+Post.defaultProps = {
+  isViewOnly: true,
 };
 
 Post.propTypes = {
@@ -52,6 +67,7 @@ Post.propTypes = {
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
   }).isRequired,
+  isViewOnly: PropTypes.bool,
 };
 
 export default Post;

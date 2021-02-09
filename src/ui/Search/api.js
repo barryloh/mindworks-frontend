@@ -8,7 +8,11 @@ const SEARCH_COMMENTS = gql`
         body
         id
         title
-        userId
+        user {
+          id
+          name
+          username
+        }
       }
       name
       body

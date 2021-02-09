@@ -1,11 +1,10 @@
 import { Box, Typography } from '@material-ui/core';
 
-import getAllPostsAndUsers from './api';
+import getAllPosts from './api';
 import Post from './Post';
 
 const Posts = () => {
-  const { loading, error, data } = getAllPostsAndUsers();
-  console.log('##data', data);
+  const { loading, error, data } = getAllPosts();
 
   if (error) return <p>Error :(</p>;
 

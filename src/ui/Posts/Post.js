@@ -24,14 +24,14 @@ const useStyles = makeStyles(() => ({
 const Post = ({ post }) => {
   const classes = useStyles();
 
-  const { id, userId, title, body } = post;
+  const { id, user, title, body } = post;
   return (
     <Link className={classes.cardLink} to={`/post/${id}`}>
       <Box my={6}>
         <Card>
           <CardActionArea>
             <CardContent>
-              <User id={userId} />
+              <User name={user.name} username={user.username} />
               <Typography variant="h6" align="left" gutterBottom>
                 {title}
               </Typography>
@@ -48,10 +48,14 @@ const Post = ({ post }) => {
 
 Post.propTypes = {
   post: PropTypes.shape({
-    userId: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
