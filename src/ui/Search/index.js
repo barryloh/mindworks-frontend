@@ -5,7 +5,7 @@ import { Box, Button, Typography } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import searchComments from './api';
-import Post from '../Posts/Post';
+import Post from '../../components/PostWithComments';
 
 const Search = () => {
   const history = useHistory();
@@ -74,7 +74,7 @@ const Search = () => {
         )}
         {posts.map((post) => {
           const { id } = post;
-          return <Post key={id} post={post} />;
+          return <Post key={id} post={post} isViewOnly={false} />;
         })}
       </Box>
     </Box>
