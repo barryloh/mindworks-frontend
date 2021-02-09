@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { Search as SearchIcon } from '@material-ui/icons';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Querystring from 'querystring';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    height: 36,
   },
   sectionDesktop: {
     display: 'none',
@@ -112,9 +113,11 @@ const Appbar = () => {
       <AppBar position="fixed">
         <Toolbar>
           <Box position="absolute">
-            <Typography variant="h6" noWrap>
-              Comments Manager
-            </Typography>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
+              <Typography variant="h6" noWrap>
+                Comments Manager
+              </Typography>
+            </Link>
           </Box>
           <Container maxWidth="sm">
             <div className={classes.search}>
