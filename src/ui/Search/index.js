@@ -14,7 +14,6 @@ const Search = () => {
 
   const { query } = queryParams;
   const { loading, data, error } = searchComments(query);
-  console.log('##data', loading, error, data);
 
   const [posts, setPosts] = useState([]);
 
@@ -67,14 +66,21 @@ const Search = () => {
             Loading...
           </Typography>
         )}
-        {!loading && posts.length === 0 && (
+        {!loading && error && (
+          <Typography variant="h5" component="p">
+            An error has occurred: {error}
+          </Typography>
+        )}
+        {!loading && !error && posts.length === 0 && (
           <Typography variant="h5" component="p">
             No results found
           </Typography>
         )}
         {posts.map((post) => {
           const { id } = post;
-          return <Post key={id} post={post} isViewOnly={false} />;
+          return (
+            <Post key={id} post={post} isViewOnly={false} searchQuery={query} />
+          );
         })}
       </Box>
     </Box>

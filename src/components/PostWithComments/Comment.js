@@ -1,6 +1,7 @@
 import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import SearchTextHighlighter from 'search-text-highlight';
 
 import User from '../User';
 
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, searchQuery }) => {
   const classes = useStyles();
 
   const { email, name, body } = comment;
@@ -26,17 +27,30 @@ const Comment = ({ comment }) => {
   return (
     <>
       <Box className={classes.container}>
-        <User email={email} />
-        <Typography component="p" align="left">
-          {name}
-        </Typography>
-        <Typography component="p" align="left" color="textSecondary">
-          {body}
-        </Typography>
+        <User email={SearchTextHighlighter.highlight(email, searchQuery)} />
+        <Typography
+          component="p"
+          align="left"
+          dangerouslySetInnerHTML={{
+            __html: SearchTextHighlighter.highlight(name, searchQuery),
+          }}
+        />
+        <Typography
+          component="p"
+          align="left"
+          color="textSecondary"
+          dangerouslySetInnerHTML={{
+            __html: SearchTextHighlighter.highlight(body, searchQuery),
+          }}
+        />
       </Box>
       <hr className={classes.separator} />
     </>
   );
+};
+
+Comment.defaultProps = {
+  searchQuery: null,
 };
 
 Comment.propTypes = {
@@ -45,6 +59,7 @@ Comment.propTypes = {
     email: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
   }).isRequired,
+  searchQuery: PropTypes.string,
 };
 
 export default Comment;

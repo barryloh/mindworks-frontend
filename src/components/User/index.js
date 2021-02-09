@@ -12,7 +12,12 @@ const User = ({ email, name, username }) => (
             component="span">{`@${username}`}</Typography>
         </>
       ) : (
-        email
+        <Typography
+          style={{ fontWeight: 400 }}
+          align="left"
+          component="span"
+          dangerouslySetInnerHTML={{ __html: email }}
+        />
       )}
     </Typography>
   </Box>

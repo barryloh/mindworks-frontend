@@ -87,9 +87,6 @@ const Appbar = () => {
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
-      console.log('value', e.target.value, history);
-      // put the login here
-
       const path = {
         pathname: '/search',
         search: `?query=${e.target.value}`,
@@ -125,7 +122,7 @@ const Appbar = () => {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder="Search anything in comments..."
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

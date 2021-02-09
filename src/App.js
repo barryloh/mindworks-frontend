@@ -24,7 +24,7 @@ const client = new ApolloClient({
 
 function App() {
   useEffect(() => {
-    console.log(`URL:${process.env.REACT_APP_API_GRAPH_QL}`);
+    console.log(`GraphQL URL: ${process.env.REACT_APP_API_GRAPH_QL}`);
   }, []);
 
   return (
