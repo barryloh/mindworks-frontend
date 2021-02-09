@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Post = ({ post, isViewOnly }) => {
+const Post = ({ post, searchQuery, isViewOnly }) => {
   const classes = useStyles();
   const { id, title, body, user, comments } = post;
 
@@ -69,7 +69,13 @@ const Post = ({ post, isViewOnly }) => {
                 <Box>
                   {comments.map((comment) => {
                     const { id: commentId } = comment;
-                    return <Comment key={commentId} comment={comment} />;
+                    return (
+                      <Comment
+                        key={commentId}
+                        comment={comment}
+                        searchQuery={searchQuery}
+                      />
+                    );
                   })}
                 </Box>
               </>
@@ -82,6 +88,7 @@ const Post = ({ post, isViewOnly }) => {
 };
 
 Post.defaultProps = {
+  searchQuery: null,
   isViewOnly: true,
 };
 
@@ -91,20 +98,21 @@ Post.propTypes = {
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
+      email: PropTypes.string,
       username: PropTypes.string.isRequired,
     }).isRequired,
     comments: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         body: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
       }),
     ),
   }).isRequired,
+  searchQuery: PropTypes.string,
   isViewOnly: PropTypes.bool,
 };
 
