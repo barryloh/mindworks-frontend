@@ -1,24 +1,32 @@
 # Mindworks Comments Manager
 
-## Available Scripts
+# Installation
 
-In the project directory, you can run:
+1. Run `yarn` command to install all dependencies.
+2. Duplicate `.env.example` to `.env` and replace the GraphQL API URL
+3. Set up a local GraphQL API from [here](https://github.com/barryloh/json-placeholder-graphql)
+   > 1. Checkout repository from URL above
+   >
+   > 2. Install dependencies via `npm install`
+   > 
+   > 3. Run locally `npm start`
+4. Run `yarn start` to begin project
 
-### `yarn start`
+# Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Home page - Shows all Posts from API
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Home - All Posts](./screenshots/Home%20-%20All%20Posts.png)
 
+2. Post Details
 
-### `yarn build`
+![Post Details](./screenshots/Post%20Details.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Search Comments
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Search Comments](./screenshots/Search%20Comments.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Other info
+
+App is built with `create-react-app` and `material-ui`
+

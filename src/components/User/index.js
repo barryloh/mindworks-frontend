@@ -15,7 +15,6 @@ const User = ({ email, name, username }) => (
         <Typography
           style={{ fontWeight: 400 }}
           align="left"
-          component="span"
           dangerouslySetInnerHTML={{ __html: email }}
         />
       )}
